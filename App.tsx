@@ -14,6 +14,7 @@ import { ThemeProvider } from "styled-components/native";
 import { SignIn } from "./src/screens/SignIn";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { AuthProvider } from "./src/hooks/auth";
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -32,7 +33,9 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
         <StatusBar style="auto" translucent backgroundColor="transparent" />
-        <SignIn />
+        <AuthProvider>
+          <SignIn />
+        </AuthProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   );
