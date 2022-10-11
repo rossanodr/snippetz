@@ -1,7 +1,8 @@
 export default {
   COLORS: {
-    BACKGROUND: '#FBFBFB',
+    BACKGROUND: '#DCDCDC',
     BACKGROUND_SECONDARY: '#9E9E9E',
+    
 
     TEXT_PRIMARY: '#3E3F42',
     TEXT_LIGHT: '#9A9B9D',
@@ -20,10 +21,10 @@ export default {
     SUCCESS_500: '#9FD1DA',
     SUCCESS_50: '#F7FFF9',
 
-    SHAPE: '#DCDCDC',
-    TITLE: '#FFF',
+    SHAPE: '#FBFBFB',
+    TITLE: '#DCDCDC',
 
-    GRADIENT: ['#B83341', '#E03F50'],
+    GRADIENT: ['#FF7A51', '#FFDB5C'],
   },
 
   FONTS: {

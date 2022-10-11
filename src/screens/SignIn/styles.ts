@@ -1,26 +1,24 @@
 import { RectButton } from "react-native-gesture-handler";
-import { getBottomSpace } from "react-native-iphone-x-helper";
+import { getBottomSpace, getStatusBarHeight } from "react-native-iphone-x-helper";
 import styled, { css } from "styled-components/native";
 
 
 
 export const Container = styled.View`
+  flex: 1;
   width: 100%;
+  background-color: ${({theme})=> theme.COLORS.BACKGROUND} ;
+ 
   justify-content: center;
   align-items: center;
-  flex: 1;
   
- 
-  
-`;
-export const Content = styled.ScrollView.attrs({
-  showsVerticalScrollIndicator: false,
-  contentContainerStyle: {
-    paddingBottom: getBottomSpace() + 48,
-  },
-})`
+  `;
+
+export const Content = styled.View`
   width: 100%;
-  padding: 0 32px;
+  position: absolute;
+  top: ${getStatusBarHeight()+ 15}px;
+  
 `;
 
 export const Footer = styled.View`

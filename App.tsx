@@ -9,12 +9,12 @@ import {
   useFonts,
 } from "@expo-google-fonts/montserrat";
 import theme from "./src/theme";
-import { Text, View } from "react-native";
 import { ThemeProvider } from "styled-components/native";
-import { SignIn } from "./src/screens/SignIn";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AuthProvider } from "./src/hooks/auth";
+import {  PhotoScreen } from "./src/screens/PhotoScreen";
+import { Routes } from "./src/routes";
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -34,7 +34,8 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <StatusBar style="auto" translucent backgroundColor="transparent" />
         <AuthProvider>
-          <SignIn />
+          {/* <Routes /> */}
+          <PhotoScreen />
         </AuthProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
