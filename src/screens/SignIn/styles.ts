@@ -1,6 +1,6 @@
 import { RectButton } from "react-native-gesture-handler";
-import { getBottomSpace, getStatusBarHeight } from "react-native-iphone-x-helper";
 import styled, { css } from "styled-components/native";
+import constants from "expo-constants";
 
 
 
@@ -17,7 +17,7 @@ export const Container = styled.View`
 export const Content = styled.View`
   width: 100%;
   position: absolute;
-  top: ${getStatusBarHeight()+ 15}px;
+  top: ${constants.statusBarHeight + 15}px;
   
 `;
 

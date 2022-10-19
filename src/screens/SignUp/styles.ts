@@ -1,5 +1,4 @@
 import { RectButton } from "react-native-gesture-handler";
-import { getBottomSpace, getStatusBarHeight } from "react-native-iphone-x-helper";
 import styled, { css } from "styled-components/native";
 
 

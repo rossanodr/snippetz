@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PhotoPost } from '../../components/PhotoPost';
+import { PostImageType } from '../../components/PostImageType';
 import {
   Container
 } from './styles';
@@ -8,7 +8,7 @@ import {
 export function PhotoScreen() {
   return (
     <Container>
-    <PhotoPost />
+    <PostImageType screenType='fullscreen' />
     </Container>
   );
 }

@@ -2,27 +2,41 @@ import * as SplashScreen from "expo-splash-screen";
 import React from "react";
 
 import {
-  Montserrat_300Light,
-  Montserrat_400Regular,
-  Montserrat_500Medium,
-  Montserrat_600SemiBold,
   useFonts,
-} from "@expo-google-fonts/montserrat";
+  Roboto_300Light,
+  Roboto_400Regular,
+  Roboto_500Medium,
+  Roboto_700Bold,
+} from "@expo-google-fonts/roboto";
+import {
+  Poppins_300Light,
+  Poppins_400Regular,
+  Poppins_500Medium,
+  Poppins_600SemiBold,
+  Poppins_700Bold,
+} from "@expo-google-fonts/poppins";
+
 import theme from "./src/theme";
 import { ThemeProvider } from "styled-components/native";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AuthProvider } from "./src/hooks/auth";
-import {  PhotoScreen } from "./src/screens/PhotoScreen";
+import { PhotoScreen } from "./src/screens/PhotoScreen";
 import { Routes } from "./src/routes";
+import { Home } from "./src/screens/Home";
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
   const [fontsLoaded] = useFonts({
-    Montserrat_300Light,
-    Montserrat_400Regular,
-    Montserrat_500Medium,
-    Montserrat_600SemiBold,
+    Roboto_300Light,
+    Roboto_400Regular,
+    Roboto_500Medium,
+    Roboto_700Bold,
+    Poppins_300Light,
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
   });
   if (!fontsLoaded) {
     return null;
@@ -32,10 +46,11 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
-        <StatusBar style="auto" translucent backgroundColor="transparent" />
+        <StatusBar style="light" translucent backgroundColor="transparent" />
         <AuthProvider>
-          {/* <Routes /> */}
-          <PhotoScreen />
+          <Routes />
+          {/* <Home /> */}
+          {/* <PhotoScreen /> */}
         </AuthProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
