@@ -13,17 +13,34 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 type User = {
   id: string;
   name: string;
+<<<<<<< HEAD
   isAdmin: boolean;
   idNumber?: string;
+=======
+  idNumber?: string;
+  avatarUrl?: string;
+>>>>>>> ace9350... implementing comments
 };
 
 type AuthContextData = {
   signIn: (email: string, password: string) => Promise<void>;
+<<<<<<< HEAD
   signUp: (email: string, password: string, idNumber: string, name: string) => Promise<void>;
   signOut: () => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
   isLogging: boolean;
   isReady: boolean;
+=======
+  signUp: (
+    email: string,
+    password: string,
+    idNumber: string,
+    name: string
+  ) => Promise<boolean>;
+  signOut: () => Promise<void>;
+  forgotPassword: (email: string) => Promise<void>;
+  isLogging: boolean;
+>>>>>>> ace9350... implementing comments
   user: User | null;
 };
 
@@ -38,7 +55,10 @@ export const AuthContext = createContext({} as AuthContextData);
 // AUTH PROVIDER WITH FUNCTIONS USED IN THE HOOK
 function AuthProvider({ children }: AuthProviderProps) {
   //States
+<<<<<<< HEAD
   const [isReady, setIsReady] = useState(false);
+=======
+>>>>>>> ace9350... implementing comments
 
   const [isLogging, setIsLogging] = useState(false);
   const [user, setUser] = useState<User | null>(null);
@@ -63,13 +83,21 @@ function AuthProvider({ children }: AuthProviderProps) {
           .get()
           .then(async (profile) => {
             //Saving the profile data to user (useState)
+<<<<<<< HEAD
             const { name, isAdmin } = profile.data() as User;
+=======
+            const { name, avatarUrl } = profile.data() as User;
+>>>>>>> ace9350... implementing comments
 
             if (profile.exists) {
               const userData = {
                 id: account.user.uid,
                 name,
+<<<<<<< HEAD
                 isAdmin,
+=======
+                avatarUrl
+>>>>>>> ace9350... implementing comments
                 
               };
               await AsyncStorage.setItem(
@@ -82,8 +110,15 @@ function AuthProvider({ children }: AuthProviderProps) {
           .catch((err) => Alert.alert("Login", err.message));
       })
       .catch((err) => {
+<<<<<<< HEAD
         const { code } = err;
         if (code === "auth/user-not-found" || code === "auth/wrong-password") {
+=======
+        if (
+          err.code === "auth/user-not-found" ||
+          err.code === "auth/wrong-password"
+        ) {
+>>>>>>> ace9350... implementing comments
           return Alert.alert("Login", "Email or password incorrect");
         } else {
           return Alert.alert("Login", "Login failed");
@@ -92,6 +127,7 @@ function AuthProvider({ children }: AuthProviderProps) {
       .finally(() => setIsLogging(false));
   }
 
+<<<<<<< HEAD
 //SignUp function
 async function signUp(email: string, password: string, name: string, idNumber: string){
   setIsLogging(true)
@@ -109,6 +145,37 @@ async function signUp(email: string, password: string, name: string, idNumber: s
   }).finally(() =>  setIsLogging(false))
  
 }
+=======
+  //SignUp function
+  async function signUp(
+    email: string,
+    password: string,
+    name: string,
+    idNumber: string
+  ) {
+    setIsLogging(true);
+
+    try {
+      const account = await auth().createUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      await firestore().collection("users").doc(account.user.uid).set({
+        name,
+        idNumber,
+        
+      });
+
+      return true;
+    } catch (error) {
+      Alert.alert("Ops", error.message);
+      return false;
+    } finally {
+      setIsLogging(false);
+    }
+  }
+>>>>>>> ace9350... implementing comments
 
   //Load User from AsyncStorage
   async function loadUserStorageData() {
@@ -118,7 +185,10 @@ async function signUp(email: string, password: string, name: string, idNumber: s
 
     if (storedUser) {
       const userData = JSON.parse(storedUser) as User;
+<<<<<<< HEAD
       console.log(userData);
+=======
+>>>>>>> ace9350... implementing comments
       setUser(userData);
     }
     setIsLogging(false);
@@ -157,7 +227,10 @@ async function signUp(email: string, password: string, name: string, idNumber: s
   return (
     <AuthContext.Provider
       value={{
+<<<<<<< HEAD
         isReady,
+=======
+>>>>>>> ace9350... implementing comments
         isLogging,
         signIn,
         signUp,

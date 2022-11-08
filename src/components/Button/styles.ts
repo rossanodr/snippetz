@@ -20,7 +20,11 @@ export const ButtonContainer = styled(RectButton)<ContainerProps>`
   border-radius: 20px;
   
   background-color: ${({ theme, type }) =>
+<<<<<<< HEAD
     type === "primary" ? theme.COLORS.TITLE : "transparent"};
+=======
+    type === "primary" ? theme.COLORS.SHAPE : "transparent"};
+>>>>>>> ace9350... implementing comments
 `;
 
 export const Container = styled.View<ContainerProps>`
@@ -31,7 +35,11 @@ export const Container = styled.View<ContainerProps>`
   
   border: 1px solid
    ${({ theme, type }) =>
+<<<<<<< HEAD
     type === "primary" ? theme.COLORS.TEXT_PRIMARY : theme.COLORS.TITLE};
+=======
+    type === "primary" ? theme.COLORS.DARK : theme.COLORS.SHAPE};
+>>>>>>> ace9350... implementing comments
 
   border-radius: 20px;
 
@@ -43,10 +51,18 @@ export const Title = styled.Text<ContainerProps>`
   ${({ theme, type }) => css`
     color: ${type === "primary"
       ? theme.COLORS.TEXT_PRIMARY
+<<<<<<< HEAD
       : theme.COLORS.TITLE};
+=======
+      : theme.COLORS.SHAPE};
+>>>>>>> ace9350... implementing comments
   `}
 `;
 
 export const Load = styled.ActivityIndicator.attrs(({ theme }) => ({
+<<<<<<< HEAD
   color: theme.COLORS.TEXT_PRIMARY,
+=======
+  color: theme.COLORS.DARK,
+>>>>>>> ace9350... implementing comments
 }))``;

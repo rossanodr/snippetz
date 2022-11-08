@@ -91,7 +91,11 @@ export const TitleInput = styled(TextInput).attrs(
   font-size: 16px;
 `;
 
+<<<<<<< HEAD
 export const TextLabelInput = styled(TextInput).attrs(({ ...rest }: Props) => ({
+=======
+export const BodyInput = styled(TextInput).attrs(({ ...rest }: Props) => ({
+>>>>>>> ace9350... implementing comments
   width: "100%",
 
   maxHeight: "100%",

@@ -13,7 +13,10 @@ import { Input } from "../../components/Input";
 import { useAuth } from "../../hooks/auth";
 import * as Yup from "yup";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ace9350... implementing comments
 import {
   Container,
   Content,
@@ -22,18 +25,32 @@ import {
   TextLabel,
   Title,
 } from "./styles";
+<<<<<<< HEAD
 
 export function SignIn() {
   //States
+=======
+import { useTypeNavigation } from "../../hooks/useTypeNavigation";
+
+export function SignIn() {
+   //States
+>>>>>>> ace9350... implementing comments
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //Hooks
   const { signIn, isLogging, forgotPassword } = useAuth();
 
   //Functions
+<<<<<<< HEAD
   function handleSignIn() {
     signIn(email, password);
   }
+=======
+  async function handleSignIn() {
+    await signIn(email, password)
+  }
+
+>>>>>>> ace9350... implementing comments
   function handleForgotPassword() {
     forgotPassword(email);
   }

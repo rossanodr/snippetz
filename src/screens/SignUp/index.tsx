@@ -23,6 +23,10 @@ import {
   Title,
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
+<<<<<<< HEAD
+=======
+import { useTypeNavigation } from "../../hooks/useTypeNavigation";
+>>>>>>> ace9350... implementing comments
 
 export function SignUp() {
   //States
@@ -33,11 +37,20 @@ export function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   //Hooks
+<<<<<<< HEAD
   const { signUp, isLogging, isReady } = useAuth();
   const navigation = useNavigation();
 
   //Functions
   async function handleSignUp() {
+=======
+  const { signUp, isLogging } = useAuth();
+  const navigation = useTypeNavigation();
+
+  //Functions
+  async function handleSignUp() {
+    let a = null;
+>>>>>>> ace9350... implementing comments
     const schema = Yup.object().shape({
       confirmPassword: Yup.string()
         .oneOf([Yup.ref("password"), null], "Password must be the same")
@@ -47,6 +60,7 @@ export function SignUp() {
       idNumber: Yup.string().required("Id number is required"),
     });
     try {
+<<<<<<< HEAD
       await schema
         .validate({ password, confirmPassword, name, idNumber })
         .then(async () => {
@@ -56,6 +70,11 @@ export function SignUp() {
             
           });
         });
+=======
+      await schema.validate({ password, confirmPassword, name, idNumber });
+      a = await signUp(email, password, name, idNumber);
+      a ? navigation.navigate("SignIn") : null;
+>>>>>>> ace9350... implementing comments
     } catch (error) {
       Alert.alert("Something went wrong", error.message);
     }
