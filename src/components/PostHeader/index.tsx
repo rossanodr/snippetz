@@ -158,7 +158,7 @@ export function PostHeader({
             </Name>
           ) : (
             <></>
-          )}
+          )} 
           {showTime ? (
             <Time
               screenType={screenType}
