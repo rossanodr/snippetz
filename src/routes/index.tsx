@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import { NavigationContainer} from '@react-navigation/native';
-import {  AuthRoutes } from "./auth.stack.routes";
-
-export function Routes(){
-    return(
-        <NavigationContainer>
-            <AuthRoutes />
-        </NavigationContainer>
-    )
-}
-=======
 import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { AuthRoutes } from "./auth.stack.routes";
@@ -28,4 +15,3 @@ export function Routes() {
     </NavigationContainer>
   );
 }
->>>>>>> ace9350... implementing comments

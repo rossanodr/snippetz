@@ -1,43 +1,3 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { PostHeader } from "../../components/PostHeader";
-import { Feather } from "@expo/vector-icons";
-import { BorderlessButton } from "react-native-gesture-handler";
-import { AntDesign } from "@expo/vector-icons";
-
-import {
-  Add,
-  AddButton,
-  Container,
-  Content,
-  Header,
-  GalleryContainer,
-  ImagesThumbnail,
-  ImageWrapper,
-  TextBox,
-  TextLabelInput,
-  TitleInput,
-  CancelPhotoButtonView,
-  ButtonClose,
-  BackButtonAndPostButton,
-  PostItButton,
-  PostItText,
-} from "./styles";
-import { useTheme } from "styled-components/native";
-import { ImageComponent } from "../../components/ImageComponent";
-import { Image } from "react-native";
-import { BackButton } from "../../components/BackButton";
-import { Avatar } from "../../components/Avatar";
-import Constants from 'expo-constants';
-
-export function CreatePost() {
-  const theme = useTheme();
-
-  const [image, setImage] = useState("");
-  const [isActive, setIsActive] = useState(false);
-  const [comment, setComment] = useState("");
-
-=======
 import React, { useEffect, useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import firestore from "@react-native-firebase/firestore";
@@ -88,7 +48,6 @@ export function CreatePost() {
   const [loading, setLoading] = useState(false);
 
   //Functions
->>>>>>> ace9350... implementing comments
   function handleInputFocus() {
     setIsActive(true);
   }
@@ -96,10 +55,6 @@ export function CreatePost() {
   function handleInputBlur() {
     setIsActive(false);
   }
-<<<<<<< HEAD
-  function handleAddPhoto() {
-    setImage("https://thispersondoesnotexist.com/image");
-=======
   async function handleAddPhoto() {
     setImage("");
     const result = (await ImagePicker.launchImageLibraryAsync({
@@ -114,14 +69,11 @@ export function CreatePost() {
       setImage(result.uri);
       setIsEnabled(true);
     }
->>>>>>> ace9350... implementing comments
   }
 
   function handleCancelPhoto() {
     setImage("");
   }
-<<<<<<< HEAD
-=======
 
   async function handlePostIt() {
     let url = "";
@@ -189,36 +141,11 @@ export function CreatePost() {
   //   console.log(user)
   // },[])
 
->>>>>>> ace9350... implementing comments
   return (
     <Container>
       <Content>
         <BackButtonAndPostButton>
           <BackButton />
-<<<<<<< HEAD
-          <PostItButton>
-            <PostItText>Post It!</PostItText>
-          </PostItButton>
-        </BackButtonAndPostButton>
-        <Header>
-          <Avatar
-            avatarUrl="http://www.github.com/rossanodr.png"
-            size={45}
-            radius={14}
-          />
-          <TitleInput placeholder="Title" />
-        </Header>
-
-
-        <TextBox active={isActive}>
-          <TextLabelInput
-            multiline={true}
-            placeholder="Add a comment..."
-            onChangeText={setComment}
-            value={comment}
-            onFocus={handleInputFocus}
-            onBlur={handleInputBlur}
-=======
           <PostItButton onPress={handlePostIt} enabled={isEnabled}>
             {loading ? (
               <ActivityIndicator />
@@ -250,7 +177,6 @@ export function CreatePost() {
             onFocus={handleInputFocus}
             onBlur={handleInputBlur}
             maxLength={287}
->>>>>>> ace9350... implementing comments
           />
         </TextBox>
         {image && (

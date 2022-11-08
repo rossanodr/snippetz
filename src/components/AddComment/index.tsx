@@ -24,7 +24,9 @@ export function AddComment() {
             radius={10}
             avatarUrl={"http://notarealhuman.com/face"}
           />
-          <CommentInput iconName="arrow-right-circle" active={setIsActive} placeholder='Add a comment...' onChangeText={setComment} value={isActive ? comment : ''}/>
+          <CommentInput iconName="arrow-right-circle" active={setIsActive} placeholder='Add a comment...' onChangeText={setComment} value={isActive ? comment : ''} setComment={setComment} handleButtonPress={function (): void {
+            throw new Error("Function not implemented.");
+          } } loading={false}/>
         </AddCommentContainer>
           {!isActive && 
           

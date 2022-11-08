@@ -14,20 +14,10 @@ export const Container = styled(LinearGradient).attrs(({ theme }) => ({
   height: ${({size}) =>size}px;
   width: ${({size}) =>size}px;
   border-radius: ${({radius}) =>radius}px;
-<<<<<<< HEAD
-=======
-
->>>>>>> ace9350... implementing comments
   
   
 `;
 
-<<<<<<< HEAD
-export const AvatarImg = styled.Image<Props>`
-  height: ${({size}) =>size -3}px;
-  width: ${({size}) =>size-3}px;
-  border-radius: ${({radius}) =>radius}px;
-=======
 export const AvatarContainer = styled.View<Props>`
 justify-content: center;
   align-items: center;
@@ -44,6 +34,5 @@ export const AvatarImg = styled.Image<Props>`
   border-radius: ${({radius}) =>radius}px;
   background-color: ${({theme})=> theme.COLORS.TEXT_LIGHT}
 
->>>>>>> ace9350... implementing comments
   
 `;

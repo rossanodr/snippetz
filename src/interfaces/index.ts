@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-export interface PostType {
-    screenType: 'fullscreen' | 'small';
-    postType?: 'text' | 'image';
-    isRepost?: boolean;
-}
-=======
 export interface User {
   userName?: string;
   avatarUrl?: string;
@@ -41,4 +34,3 @@ export interface RepostContentProps extends PostContent {
   repostAuthor?: string;
   repostAuthorAvatar?: string;
 }
->>>>>>> ace9350... implementing comments

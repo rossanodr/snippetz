@@ -19,10 +19,6 @@ import {
 } from "./styles";
 import { Avatar } from "../Avatar";
 import { View } from "react-native";
-<<<<<<< HEAD
-
-export function MainHeader() {
-=======
 import { useAuth } from "../../hooks/auth";
 
 export function MainHeader() {
@@ -32,16 +28,11 @@ export function MainHeader() {
     signOut();
   }
 
->>>>>>> ace9350... implementing comments
   return (
     <Container>
       <Content>
         <IconsContainer>
-<<<<<<< HEAD
-          <LeftIconContainer>
-=======
           <LeftIconContainer onPress={handleSignOut}>
->>>>>>> ace9350... implementing comments
             <LeftIcon>
               <MaterialCommunityIcons
                 name="dots-grid"

@@ -1,9 +1,6 @@
 import * as SplashScreen from "expo-splash-screen";
-<<<<<<< HEAD
-=======
 
 
->>>>>>> ace9350... implementing comments
 import React from "react";
 
 import {
@@ -29,10 +26,7 @@ import { AuthProvider } from "./src/hooks/auth";
 import { PhotoScreen } from "./src/screens/PhotoScreen";
 import { Routes } from "./src/routes";
 import { Home } from "./src/screens/Home";
-<<<<<<< HEAD
-=======
 import { SafeAreaProvider } from 'react-native-safe-area-context';
->>>>>>> ace9350... implementing comments
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -53,23 +47,12 @@ export default function App() {
   SplashScreen.hideAsync();
 
   return (
-<<<<<<< HEAD
-=======
     <SafeAreaProvider>
 
->>>>>>> ace9350... implementing comments
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
         <StatusBar style="light" translucent backgroundColor="transparent" />
         <AuthProvider>
-<<<<<<< HEAD
-          <Routes />
-          {/* <Home /> */}
-          {/* <PhotoScreen /> */}
-        </AuthProvider>
-      </ThemeProvider>
-    </GestureHandlerRootView>
-=======
           
             <Routes />
           
@@ -77,6 +60,5 @@ export default function App() {
       </ThemeProvider>
     </GestureHandlerRootView>
     </SafeAreaProvider>
->>>>>>> ace9350... implementing comments
   );
 }

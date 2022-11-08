@@ -1,42 +1,3 @@
-<<<<<<< HEAD
-import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import { View } from "react-native";
-import { AddComment } from "../../components/AddComment";
-import { Avatar } from "../../components/Avatar";
-import { Comments } from "../../components/Comments";
-import { MainHeader } from "../../components/MainHeader";
-import { PostImageType } from "../../components/PostImageType";
-import { PostTextType } from "../../components/PostTextType";
-import { Repost } from "../../components/Repost";
-import { PhotoScreen } from "../PhotoScreen";
-
-import {
-  Container,
-  Content,
-  Feed,
-  HeaderContainer,
-  Post,
-  GoToPostButton,
-} from "./styles";
-
-export function Home() {
-  const navigation = useNavigation();
-  function handleNavigateToPost() {
-    navigation.navigate("PhotoScreen");
-  }
-
-  return (
-    <Container>
-      <Content>
-        <HeaderContainer>
-          <MainHeader />
-        </HeaderContainer>
-
-       
-        <Feed>
-          <Post>
-=======
 import React, { useEffect, useState } from "react";
 import constants from "expo-constants";
 
@@ -115,7 +76,6 @@ export function Home() {
       </Feed>
 
       {/* <Post>
->>>>>>> ace9350... implementing comments
             <GoToPostButton>
               <Repost postType="image" screenType="small" />
             </GoToPostButton>
@@ -123,25 +83,6 @@ export function Home() {
           </Post>
           <Post>
             <GoToPostButton>
-<<<<<<< HEAD
-              {/* <PostImageType screenType="small" /> */}
-              {/* <PostTextType screenType="small" /> */}
-              <Repost postType="text" screenType="small" />
-            </GoToPostButton>
-            {/* <Comments /> */}
-
-            {/* <AddComment /> */}
-          </Post>
-          <Post>
-            <PostImageType screenType="small" />
-          </Post>
-          <Post>
-            <PostTextType screenType="small" />
-          </Post>
-        </Feed>
-       
-      </Content>
-=======
              
               <Repost postType="text" screenType="small" />
             </GoToPostButton>
@@ -150,7 +91,6 @@ export function Home() {
           <Post>
             <PostImageType screenType="small" />
           </Post> */}
->>>>>>> ace9350... implementing comments
     </Container>
   );
 }
