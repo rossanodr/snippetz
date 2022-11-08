@@ -1,11 +1,4 @@
 {
-<<<<<<< HEAD
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    
-  }
-=======
   "compilerOptions": {},
   "extends": "expo/tsconfig.base"
->>>>>>> ace9350... implementing comments
 }
