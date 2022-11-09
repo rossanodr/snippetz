@@ -3,15 +3,19 @@ import firestore from "@react-native-firebase/firestore";
 import { useAuth } from "./auth";
 import { Alert } from "react-native";
 
-export function useComment(postId: string, comment: string) {
+export function useComment(postId: string) {
   const { user } = useAuth();
   //States
   const [commentLoading, setCommentLoading] = useState(false);
   const [commentsArray, setCommentsArray] = useState([]);
-  async function handleCommentPost() {
+ 
+ 
+  async function handleCommentPost(comment: string) {
+   
     setCommentLoading(true);
 
     if (comment) {
+      console.log('as',comment)
       await firestore()
         .collection("posts")
         .doc(postId)
@@ -21,6 +25,8 @@ export function useComment(postId: string, comment: string) {
           commentAuthor: user.id,
           createdAt: firestore.FieldValue.serverTimestamp(),
         });
+    }else{
+      console.log('fail')
     }
     setCommentLoading(false);
   }

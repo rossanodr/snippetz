@@ -4,29 +4,29 @@ import { Feather } from "@expo/vector-icons";
 import { Container, IconView, InputText } from "./styles";
 import {
   ActivityIndicator,
+  Alert,
+  Pressable,
   TextInputProps,
   TouchableOpacity,
 } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
 
 interface InputProps extends TextInputProps {
-  iconName: React.ComponentProps<typeof Feather>["name"];
-  setComment: (comment: string) => void;
   active?: (activity: boolean) => void;
-  handleButtonPress: () => void;
+  handleButtonPress: (comment: string) => void;
   loading: boolean;
 }
 
 export function CommentInput({
-  iconName,
   active,
-  setComment,
+
   handleButtonPress,
   loading,
   ...rest
 }: InputProps) {
   const theme = useTheme();
   const [isFocused, setIsFocused] = useState(false);
+  const [comment, setComment] = useState("");
 
   function handleInputFocus() {
     setIsFocused(true);
@@ -36,6 +36,14 @@ export function CommentInput({
   function handleInputBlur() {
     setIsFocused(false);
     active(false);
+  }
+  
+  function handleComment() {
+    if(comment){
+      handleButtonPress(comment);
+    }else{
+      Alert.alert("Ops", "You forgot to enter a comment")
+    }
   }
 
   return (
@@ -49,16 +57,21 @@ export function CommentInput({
         onChangeText={setComment}
         {...rest}
       />
+
       {isFocused && (
         <IconView isFocused={isFocused}>
-          <BorderlessButton onPress={handleButtonPress}>
+          <BorderlessButton onPress={handleComment}>
             <Feather
-              name={iconName}
+              name="arrow-right-circle"
               size={24}
               color={theme.COLORS.SUCCESS_900}
             />
           </BorderlessButton>
-          {loading && <ActivityIndicator />}
+        </IconView>
+      )}
+      {loading && (
+        <IconView>
+          <ActivityIndicator />
         </IconView>
       )}
     </Container>

@@ -1,42 +1,53 @@
 import React, { useState } from "react";
+import { TextInputProps } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Avatar } from "../Avatar";
 import { CommentInput } from "../CommentsInput";
+import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
-import {
-  AddCommentContainer,
-  AddCommentText,
-  CommentContainer,
-  CommentsCountText,
-  Container,
-} from "./styles";
+import { CommentContainer, CommentsCountText, Container } from "./styles";
+import { CommentsModal } from "../CommentsModal";
+import { CommentsArray } from "../../interfaces";
 
-export function AddComment() {
-    const [isActive, setIsActive] = useState(false);
-    const [ comment, setComment ] = useState('');
-    
+interface InputProps extends TextInputProps {
+  handleButtonPress: (comment: string) => void;
+  commentsArray: CommentsArray[];
+  loading: boolean;
+  numberOfComments: string;
+}
+
+export function AddComment({
+  handleButtonPress,
+  loading,
+  commentsArray,
+  numberOfComments
+}: InputProps) {
+  const [isActive, setIsActive] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <Container>
       <CommentContainer active={isActive}>
-        <AddCommentContainer>
-          <Avatar
-            size={27}
-            radius={10}
-            avatarUrl={"http://notarealhuman.com/face"}
-          />
-          <CommentInput iconName="arrow-right-circle" active={setIsActive} placeholder='Add a comment...' onChangeText={setComment} value={isActive ? comment : ''} setComment={setComment} handleButtonPress={function (): void {
-            throw new Error("Function not implemented.");
-          } } loading={false}/>
-        </AddCommentContainer>
-          {!isActive && 
-          
-        //   <AddCommentText>Add comment...</AddCommentText>
-        <TouchableOpacity>
+        <CommentInput
+          active={setIsActive}
+          handleButtonPress={handleButtonPress}
+          loading={loading}
+        />
 
-        <CommentsCountText>(273 Comments)</CommentsCountText>
-        </TouchableOpacity>
-          }
+        {!isActive && (
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <CommentsCountText>({numberOfComments ? numberOfComments : '0'} Comments)</CommentsCountText>
+          </TouchableOpacity>
+        )}
       </CommentContainer>
+
+      <CommentsModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        commentsArray={commentsArray}
+        loading={loading}
+        handleButtonPress={handleButtonPress}
+      />
     </Container>
   );
 }

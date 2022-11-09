@@ -2,26 +2,24 @@ import { TouchableOpacityProps } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 interface Props extends TouchableOpacityProps {}
-export const Container = styled(RectButton)`
+export const Container = styled.View`
+  width: 100%;
   flex: 1;
+
   align-items: center;
   flex-direction: row;
-  
+  /* background-color: black; */
   padding-left: 20px;
-  height: 50px;
-  max-height: 70px;
+
   border-radius: 19px;
- 
 
   /* background-color: ${({ theme }) => theme.COLORS.BACKGROUND_TERTIARY}; */
-  margin: 16px 0;
+  margin: 10px 0;
 `;
 export const AvatarContainer = styled.View``;
 
 export const TextContainer = styled.View`
-  flex: 1;
   padding: 0 14px;
-  border-radius: 19px;
 `;
 
 export const NameAndCommentContainer = styled.View`

@@ -27,6 +27,7 @@ export function AppTabRoutes() {
         headerShown: false,
         tabBarActiveTintColor: theme.COLORS.SUCCESS_900,
         tabBarInactiveTintColor: theme.COLORS.TEXT_LIGHTER,
+        tabBarHideOnKeyboard: true,
 
         tabBarShowLabel: false,
         tabBarStyle: {
@@ -40,9 +41,9 @@ export function AppTabRoutes() {
           height: 70,
           width: "85%",
           ...styles.shadow,
-          
         },
-      }} defaultScreenOptions={{tabBarStyle: { display: "flex" }}}
+      }}
+      defaultScreenOptions={{ tabBarStyle: { display: "flex" } }}
     >
       <Screen
         name="HomeScreen"
@@ -57,7 +58,7 @@ export function AppTabRoutes() {
             display: "flex",
             backgroundColor: "#FFFFFF",
             position: "absolute",
-  
+
             bottom: 25,
             left: 30,
             elevation: 0,
@@ -65,7 +66,7 @@ export function AppTabRoutes() {
             height: 70,
             width: "85%",
             ...styles.shadow,
-          }
+          },
         }}
       />
 

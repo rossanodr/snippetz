@@ -11,7 +11,7 @@ export function useFetchUser(userId: string) {
 
   useEffect(() => {
     setLoading(true);
-    console.log("id", userId);
+    
     async function fetchPost() {
       const data = await firestore().collection("users").doc(userId).get();
       if (data.exists) {

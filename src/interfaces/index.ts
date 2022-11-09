@@ -1,3 +1,5 @@
+import { FirebaseFirestoreTypes } from "@react-native-firebase/firestore";
+
 export interface User {
   userName?: string;
   avatarUrl?: string;
@@ -33,4 +35,10 @@ export interface RepostContentProps extends PostContent {
   repostPhotoUrl?: string;
   repostAuthor?: string;
   repostAuthorAvatar?: string;
+};
+
+export interface CommentsArray {
+  commentAuthor: string;
+  comment: string;
+  createdAt?: FirebaseFirestoreTypes.DocumentData;
 }

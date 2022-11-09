@@ -65,11 +65,7 @@ export const TextContainer = styled(BlurView).attrs(
           border-radius: 10px;
         `
       : css`
-<<<<<<< HEAD
-          padding: 2px 5px;
-=======
           padding: 0px 5px;
->>>>>>> ace9350... implementing comments
           padding-left: 15px;
           border-radius: 5px;
           margin-left: -10px;
@@ -85,11 +81,7 @@ export const Name = styled.Text<Props>`
           font-size: 14px;
         `
       : css`
-<<<<<<< HEAD
-          font-size: 13px;
-=======
           font-size: 12px;
->>>>>>> ace9350... implementing comments
         `}
 
   ${({ postType }) =>
@@ -117,11 +109,7 @@ export const Name = styled.Text<Props>`
 export const Time = styled.Text<Props>`
   font-family: ${({ theme }) => theme.FONTS.TEXT};
 
-<<<<<<< HEAD
-  font-size: 12px;
-=======
   font-size: 10px;
->>>>>>> ace9350... implementing comments
   ${({ screenType }) =>
     screenType === "fullscreen"
       ? css`
@@ -129,11 +117,7 @@ export const Time = styled.Text<Props>`
           text-shadow: 1px 1px 2px black;
         `
       : css`
-<<<<<<< HEAD
-          font-size: 11px;
-=======
           font-size: 12px;
->>>>>>> ace9350... implementing comments
           text-shadow: 1px 2px 1px black;
         `}
 

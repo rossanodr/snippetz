@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { FlatList, GestureHandlerRootView } from "react-native-gesture-handler";
 import { useComment } from "../../hooks/useComment";
 
 import { useFetchPost } from "../../hooks/useFetchPost";
 import { useLikePost } from "../../hooks/useLikePost";
 import { useSavePost } from "../../hooks/useSavePost";
 import { PostType } from "../../interfaces";
+import { AddComment } from "../AddComment";
 import { Comments } from "../Comments";
 import { CommentInput } from "../CommentsInput";
 import { PostImageType } from "../PostImageType";
@@ -24,7 +26,7 @@ export function Post({ postId, screenType, isRepost }: Props) {
   const { handleLikePost, likedPost } = useLikePost(postId);
   const { loading, post } = useFetchPost(postId, likedPost);
   const { handleCommentPost, commentLoading, fetchComments, commentsArray } =
-    useComment(postId, comment);
+    useComment(postId);
 
   useEffect(() => {
     fetchComments();
@@ -71,7 +73,7 @@ export function Post({ postId, screenType, isRepost }: Props) {
         />
       </Container>
       <Content>
-        {commentsArray && (
+        {commentsArray[0] && (
           <Comments
             comment={commentsArray[0].comment}
             commentAuthorId={commentsArray[0].commentAuthor}
@@ -79,12 +81,11 @@ export function Post({ postId, screenType, isRepost }: Props) {
           />
         )}
 
-        <CommentInput
-          iconName="arrow-right-circle"
-          active={setActive}
-          setComment={setComment}
+        <AddComment
           handleButtonPress={handleCommentPost}
           loading={commentLoading}
+          commentsArray={commentsArray}
+          numberOfComments={commentsArray.length.toString()}
         />
       </Content>
     </>
@@ -128,7 +129,7 @@ export function Post({ postId, screenType, isRepost }: Props) {
         />
       </Container>
       <Content>
-      {commentsArray[0] && (
+        {commentsArray[0] && (
           <Comments
             comment={commentsArray[0].comment}
             commentAuthorId={commentsArray[0].commentAuthor}
@@ -136,12 +137,11 @@ export function Post({ postId, screenType, isRepost }: Props) {
           />
         )}
 
-        <CommentInput
-          iconName="arrow-right-circle"
-          active={setActive}
-          setComment={setComment}
+        <AddComment
           handleButtonPress={handleCommentPost}
           loading={commentLoading}
+          commentsArray={commentsArray}
+          numberOfComments={commentsArray.length.toString()}
         />
       </Content>
     </>
