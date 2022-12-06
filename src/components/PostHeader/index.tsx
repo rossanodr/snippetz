@@ -69,6 +69,7 @@ export function PostHeader({
           size={screenType === "fullscreen" ? 46 : 36}
           radius={screenType === "fullscreen" ? 16 : 12}
           avatarUrl={avatarUrl}
+          name={name}
           style={{ zIndex: 1 }}
         />
         <TextContainer screenType={screenType}>

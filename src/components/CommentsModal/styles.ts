@@ -28,7 +28,8 @@ export const View = styled.View`
 `;
 
 export const ButtonClose = styled.Pressable`
-  background-color: #2196f3;
+  align-self: flex-end;
+  
   border-radius: 20px;
   padding: 10px;
 `;

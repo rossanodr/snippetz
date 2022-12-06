@@ -50,8 +50,15 @@ export function useFetchPost(postId: string, likedPost: boolean) {
             .doc(response.postAuthor)
             .get();
           setPostAuthor(data.get("name").toLocaleString());
-          setPostAuthorAvatar(data.get("avatarUrl").toLocaleString());
-         
+          if (data.get("avatarUrl")) {
+            setPostAuthorAvatar(data.get("avatarUrl").toLocaleString());
+          } else {
+            setPostAuthorAvatar(
+              `https://ui-avatars.com/api/?name=${data
+                .get("name")
+                .toLocaleString()}}`
+            );
+          }
         });
     }
     fetchPost();

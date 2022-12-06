@@ -2,6 +2,7 @@ import { RectButton } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
 import constants from "expo-constants";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export const Container = styled.View`
   flex: 1;
@@ -93,7 +94,7 @@ export const AvatarContent = styled.View`
 export const AvatarName = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.TEXT_BOLD};
   color: ${({ theme }) => theme.COLORS.SHAPE};
-  font-size: 12px;
+  font-size: ${RFValue(12)}px;
   margin-top: 5px;
 `;
 

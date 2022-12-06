@@ -29,6 +29,8 @@ import { FlatList } from "react-native-gesture-handler";
 import { useTypeNavigation } from "../../hooks/useTypeNavigation";
 import { Post } from "../../components/Post";
 import { useRoute } from "@react-navigation/native";
+import { useFollowRequest } from "../../hooks/useFollowRequest";
+import { ActivityIndicator } from "react-native";
 
 type Posts = {
   id: string;
@@ -42,9 +44,12 @@ export function UserProfileScreen() {
   const navigation = useTypeNavigation();
   const route = useRoute();
   const { userId } = route.params as Params;
+  const { handleFollow, loadingUserFollowed, isUserFollowed } =
+    useFollowRequest(userId);
   //States
   const [postsId, setPostsId] = useState<Posts[]>([]);
   const [loading, setLoading] = useState(false);
+  const [numberOfColumns, setNumberOfColumns] = useState(1);
 
   const [showFeed, setShowFeed] = useState(true);
   const [showGallery, setShowGallery] = useState(false);
@@ -89,12 +94,14 @@ export function UserProfileScreen() {
       setShowGallery(false);
     }
     setShowFeed(true);
+    setNumberOfColumns(1);
   }
   function handleShowGallery() {
     if (showFeed) {
       setShowFeed(false);
     }
     setShowGallery(true);
+    setNumberOfColumns(2);
   }
 
   //UseEffects
@@ -123,6 +130,9 @@ export function UserProfileScreen() {
     <Container>
       <FlatList
         data={postsId}
+        numColumns={numberOfColumns}
+     
+        key={numberOfColumns}
         onRefresh={() => setRefreshing(true)}
         refreshing={refreshing}
         contentContainerStyle={{
@@ -147,7 +157,7 @@ export function UserProfileScreen() {
                 <Label style={{ alignSelf: "flex-end" }}>Following</Label>
               </FollowersButton>
               <AvatarContainer onPress={() => handleGoToPicture(avatarImage)}>
-                <Avatar avatarUrl={avatarImage} radius={25} size={100} />
+                <Avatar  avatarUrl={avatarImage} radius={25} size={100} name={name} />
               </AvatarContainer>
               <FollowersButton>
                 <Title style={{ alignSelf: "flex-start" }}>364</Title>
@@ -159,28 +169,51 @@ export function UserProfileScreen() {
               <Label>{bio}</Label>
             </NameAndBioContainer>
 
-            <HeaderButtonsContainer>
-              <Button style={{ backgroundColor: theme.COLORS.SUCCESS_900 }}>
-                <ButtonText>Follow</ButtonText>
-              </Button>
-              <Button onPress={() => setModalVisible(true)}>
-                <ButtonText>Message</ButtonText>
-              </Button>
-            </HeaderButtonsContainer>
+            {isUserFollowed ? (
+              <HeaderButtonsContainer>
+                <Button
+                  style={{ backgroundColor: theme.COLORS.SUCCESS_900 }}
+                  onPress={handleFollow}
+                >
+                  {loadingUserFollowed ? (
+                    <ActivityIndicator />
+                  ) : (
+                    <ButtonText>Unfollow</ButtonText>
+                  )}
+                </Button>
+                <Button onPress={() => setModalVisible(true)}>
+                  <ButtonText>Message</ButtonText>
+                </Button>
+              </HeaderButtonsContainer>
+            ) : (
+              <HeaderButtonsContainer>
+                <Button
+                  style={{ backgroundColor: theme.COLORS.SUCCESS_900 }}
+                  onPress={handleFollow}
+                >
+                  {loadingUserFollowed ? (
+                    <ActivityIndicator />
+                  ) : (
+                    <ButtonText>Follow</ButtonText>
+                  )}
+                </Button>
+              </HeaderButtonsContainer>
+            )}
 
             {/* Tabs */}
 
             <IconsContainer>
-              <Ionicons
+            <Ionicons
                 name="ios-albums-outline"
                 size={28}
-                color={theme.COLORS.BACKGROUND_SECONDARY}
+                color={showFeed ? theme.COLORS.SECONDARY_900 : theme.COLORS.TEXT_LIGHTER}
                 onPress={handleShowFeed}
               />
               <Ionicons
                 name="add-circle"
                 size={28}
-                color={theme.COLORS.BACKGROUND_SECONDARY}
+                color={showGallery ? theme.COLORS.SECONDARY_900 : theme.COLORS.TEXT_LIGHTER}
+
                 onPress={handleShowGallery}
               />
               <Ionicons
@@ -201,39 +234,17 @@ export function UserProfileScreen() {
           marginBottom: 10,
         }}
         renderItem={({ item }) => (
-          <Feed>
+         
+           <>
             {showFeed && (
               <PostContainer>
                 <Post screenType="small" postId={item.id} isRepost={false} />
               </PostContainer>
             )}
 
-            {showGallery && (
-              <GalleryFeed>
-                <ImageGalleryContainer>
-                  <ImagesGallery imgSource="https://picsum.photos/500/300?random=1" />
-                </ImageGalleryContainer>
-                <ImageGalleryContainer>
-                  <ImagesGallery imgSource="https://picsum.photos/500/300?random=2" />
-                </ImageGalleryContainer>
-                <ImageGalleryContainer>
-                  <ImagesGallery imgSource="https://picsum.photos/500/300?random=3" />
-                </ImageGalleryContainer>
-                <ImageGalleryContainer>
-                  <ImagesGallery imgSource="https://picsum.photos/500/500?random=4" />
-                </ImageGalleryContainer>
-                <ImageGalleryContainer>
-                  <ImagesGallery imgSource="https://picsum.photos/500/300?random=5" />
-                </ImageGalleryContainer>
-                <ImageGalleryContainer>
-                  <ImagesGallery imgSource="https://picsum.photos/500/300?random=6" />
-                </ImageGalleryContainer>
-                <ImageGalleryContainer>
-                  <ImagesGallery imgSource="https://picsum.photos/500/300?random=7" />
-                </ImageGalleryContainer>
-              </GalleryFeed>
-            )}
-          </Feed>
+            {showGallery && <ImagesGallery postId={item.id} />}
+          </>
+          
         )}
       />
     </Container>

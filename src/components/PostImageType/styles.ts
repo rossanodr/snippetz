@@ -5,6 +5,7 @@ import { BlurView, BlurViewProps } from "expo-blur";
 import { PostType } from "../../interfaces";
 import constants from "expo-constants";
 import { RectButton } from "react-native-gesture-handler";
+import { RFValue } from "react-native-responsive-fontsize";
 
 interface Props extends BlurViewProps, PostType {
   active?: boolean;
@@ -126,14 +127,14 @@ export const Title = styled.Text<Props>`
   flex-wrap: wrap;
 
   color: ${({ theme }) => theme.COLORS.SHAPE};
-  font-size: 20px;
+  font-size: ${RFValue(20)}px;
   ${({ screenType }) =>
     screenType === "fullscreen"
       ? css`
-          font-size: 16px;
+          font-size: ${RFValue(16)}px;
         `
       : css`
-          font-size: 14px;
+          font-size: ${RFValue(14)}px;;
         `}
 `;
 
@@ -144,7 +145,7 @@ export const SubTitle = styled.Text<Props>`
 
   color: ${({ theme }) => theme.COLORS.SHAPE};
   flex-wrap: wrap;
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
 
  
 `;

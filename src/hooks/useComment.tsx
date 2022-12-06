@@ -8,14 +8,11 @@ export function useComment(postId: string) {
   //States
   const [commentLoading, setCommentLoading] = useState(false);
   const [commentsArray, setCommentsArray] = useState([]);
- 
- 
+
   async function handleCommentPost(comment: string) {
-   
     setCommentLoading(true);
 
     if (comment) {
-      console.log('as',comment)
       await firestore()
         .collection("posts")
         .doc(postId)
@@ -24,9 +21,8 @@ export function useComment(postId: string) {
           comment,
           commentAuthor: user.id,
           createdAt: firestore.FieldValue.serverTimestamp(),
-        });
-    }else{
-      console.log('fail')
+        })
+        .catch((error) => Alert.alert(error));
     }
     setCommentLoading(false);
   }

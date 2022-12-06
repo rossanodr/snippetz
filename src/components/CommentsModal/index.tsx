@@ -7,8 +7,8 @@ import {
 } from "react-native-gesture-handler";
 import { CommentsArray } from "../../interfaces";
 import { Comments } from "../Comments";
-import { CommentInput } from "../CommentsInput";
-
+import { CommentInput } from "../CommentInput";
+import { AntDesign } from '@expo/vector-icons';
 import { ButtonClose, Container, ModalView, View } from "./styles";
 interface Props {
   modalVisible: boolean;
@@ -40,6 +40,9 @@ export function CommentsModal({
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <Container>
           <ModalView>
+          <ButtonClose onPress={() => setModalVisible(!modalVisible)}>
+          <AntDesign name="closecircleo" size={24} color="black" />
+            </ButtonClose>
             <FlatList
               data={commentsArray}
               renderItem={(item) => (
@@ -55,9 +58,7 @@ export function CommentsModal({
             <View>
               <ExampleWithHoc />
             </View>
-            <ButtonClose onPress={() => setModalVisible(!modalVisible)}>
-              <Text>Hello World!</Text>
-            </ButtonClose>
+            
           </ModalView>
         </Container>
       </Modal>

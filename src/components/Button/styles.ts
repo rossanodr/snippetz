@@ -1,4 +1,5 @@
 import { RectButton } from "react-native-gesture-handler";
+import { RFValue } from "react-native-responsive-fontsize";
 import styled, { css } from "styled-components/native";
 
 export type TypeProps = "primary" | "secondary";
@@ -37,7 +38,7 @@ export const Container = styled.View<ContainerProps>`
 
 `;
 export const Title = styled.Text<ContainerProps>`
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
   font-family: ${({ theme }) => theme.FONTS.TEXT_BOLD};
 
   ${({ theme, type }) => css`

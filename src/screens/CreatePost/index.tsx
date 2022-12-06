@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { AntDesign } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import * as Yup from "yup";
 import firestore from "@react-native-firebase/firestore";
 import storage from "@react-native-firebase/storage";
-import * as ImagePicker from "expo-image-picker";
-import { ImageInfo } from "expo-image-picker";
+import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Alert } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { ImageInfo } from "expo-image-picker";
 import { useTheme } from "styled-components/native";
-import * as Yup from "yup";
 
-import { Avatar } from "../../components/Avatar";
-import { BackButton } from "../../components/BackButton";
-import { ImageComponent } from "../../components/ImageComponent";
-import { useAuth } from "../../hooks/auth";
-import { useTypeNavigation } from "../../hooks/useTypeNavigation";
 import {
   Add,
   AddButton,
@@ -24,14 +19,19 @@ import {
   Content,
   GalleryContainer,
   Header,
-  ImagesThumbnail,
   ImageWrapper,
+  ImagesThumbnail,
   PostItButton,
   PostItText,
   TextBox,
   TitleInput,
 } from "./styles";
+import { Avatar } from "../../components/Avatar";
+import { BackButton } from "../../components/BackButton";
+import { ImageComponent } from "../../components/ImageComponent";
 import { PostContent } from "../../interfaces";
+import { useAuth } from "../../hooks/auth";
+import { useTypeNavigation } from "../../hooks/useTypeNavigation";
 
 export function CreatePost() {
   const navigation = useTypeNavigation();
@@ -55,6 +55,10 @@ export function CreatePost() {
   function handleInputBlur() {
     setIsActive(false);
   }
+/**
+ * When the user clicks the button, the image picker will open and the user can select an image. If the
+ * user selects an image, the image will be displayed and the button will be enabled.
+ */
   async function handleAddPhoto() {
     setImage("");
     const result = (await ImagePicker.launchImageLibraryAsync({
@@ -75,6 +79,10 @@ export function CreatePost() {
     setImage("");
   }
 
+/**
+ * It uploads an image to firebase storage, then uploads the image url and the text to firestore, then
+ * creates a document in the user collection with the post id.
+ */
   async function handlePostIt() {
     let url = "";
     setLoading(true);
@@ -119,11 +127,6 @@ export function CreatePost() {
             .doc(data.id)
             .collection("likes")
             .add({}),
-          await firestore()
-            .collection("posts")
-            .doc(data.id)
-            .collection("comments")
-            .add({}),
           navigation.navigate("PostScreen", {
             postType: image ? "image" : "text",
             screenType: "fullscreen",
@@ -137,9 +140,7 @@ export function CreatePost() {
         setLoading(false), setImage("");
       });
   }
-  // useEffect(()=> {
-  //   console.log(user)
-  // },[])
+
 
   return (
     <Container>
@@ -155,7 +156,7 @@ export function CreatePost() {
           </PostItButton>
         </BackButtonAndPostButton>
         <Header>
-          <Avatar avatarUrl={user.avatarUrl} size={45} radius={14} />
+          <Avatar avatarUrl={user.avatarUrl} size={45} radius={14} name={user.name}/>
           <TitleInput
             placeholder="Title"
             onChangeText={(t) => {

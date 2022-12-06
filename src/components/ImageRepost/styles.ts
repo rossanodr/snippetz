@@ -1,6 +1,7 @@
 import { RectButton } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 import constants from "expo-constants";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export const Container = styled.View`
   flex: 1;
@@ -34,7 +35,7 @@ export const Text = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.TEXT};
   color: ${({ theme }) => theme.COLORS.TEXT_PRIMARY};
   /* text-align:left; */
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
   margin: 4px;
 `;
 export const ImageWrapper = styled.View`

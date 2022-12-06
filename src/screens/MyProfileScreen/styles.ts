@@ -2,6 +2,7 @@ import { RectButton } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 import constants from "expo-constants";
 import { BlurView } from "expo-blur";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export const Container = styled.View
 // .ScrollView.attrs({
@@ -59,7 +60,7 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.TEXT_BOLD};
   color: ${({ theme }) => theme.COLORS.TEXT_PRIMARY};
 
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
   margin-top: 5px;
 `;
 
@@ -67,7 +68,7 @@ export const Label = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.TEXT};
   color: ${({ theme }) => theme.COLORS.TEXT_PRIMARY};
 
-  font-size: 12px;
+  font-size: ${RFValue(12)}px;
 `;
 
 export const NameAndBioContainer = styled.View`
@@ -97,7 +98,7 @@ export const Button = styled(RectButton)`
 export const ButtonText = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.TEXT_BOLD};
   color: ${({ theme }) => theme.COLORS.SHAPE};
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
   padding: 5px 10px;
 `;
 

@@ -19,7 +19,6 @@ interface InputProps extends TextInputProps {
 
 export function CommentInput({
   active,
-
   handleButtonPress,
   loading,
   ...rest

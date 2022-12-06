@@ -1,14 +1,14 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from "react";
-import { Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { Alert } from "react-native";
 
 type User = {
   id: string;
@@ -40,6 +40,11 @@ const USER_COLLECTION = "@snippetz:users";
 export const AuthContext = createContext({} as AuthContextData);
 
 // AUTH PROVIDER WITH FUNCTIONS USED IN THE HOOK
+/**
+ * The AuthProvider function is a React component that provides the AuthContext to all of its children.
+ * @param {AuthProviderProps}  - AuthProviderProps {
+ * @returns The AuthProvider is returning the AuthContext.Provider.
+ */
 function AuthProvider({ children }: AuthProviderProps) {
   //States
 
@@ -47,7 +52,13 @@ function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
 
   //SignIn function set isLogging to true when processing and
-  // returns errors if the login is invalid
+  /**
+   * If the user is not found or the password is incorrect, then alert the user that the email or
+   * password is incorrect. Otherwise, alert the user that the login failed.
+   * @param {string} email - string, password: string
+   * @param {string} password - string
+   * @returns The user data is being returned.
+   */
   async function signIn(email: string, password: string) {
     if (!email || !password) {
       return Alert.alert(
@@ -128,6 +139,9 @@ function AuthProvider({ children }: AuthProviderProps) {
   }
 
   //Load User from AsyncStorage
+/**
+ * If there is a stored user, set the user state to the stored user.
+ */
   async function loadUserStorageData() {
     setIsLogging(true);
 
@@ -167,6 +181,7 @@ function AuthProvider({ children }: AuthProviderProps) {
       );
   }
 
+/* Loading the user data from the AsyncStorage. */
   useEffect(() => {
     loadUserStorageData();
   }, []);
@@ -187,6 +202,10 @@ function AuthProvider({ children }: AuthProviderProps) {
 }
 
 //THE HOOK IS HERE
+/**
+ * UseAuth() is a function that returns the context of the AuthContext.
+ * @returns The context object.
+ */
 function useAuth() {
   const context = useContext(AuthContext);
 

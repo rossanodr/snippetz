@@ -1,5 +1,6 @@
 import { TouchableOpacityProps } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
+import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 interface Props extends TouchableOpacityProps {}
 export const Container = styled.View`
@@ -32,14 +33,14 @@ export const NameAndCommentContainer = styled.View`
 export const Name = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.TITLE};
   color: ${({ theme }) => theme.COLORS.DARK};
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
   margin-right: 8px;
 `;
 
 export const Comment = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.TEXT};
   color: ${({ theme }) => theme.COLORS.TEXT_PRIMARY};
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
 `;
 
 export const LabelContainer = styled.View`
@@ -51,6 +52,6 @@ export const LabelContainer = styled.View`
 export const Label = styled.Text<Props>`
   font-family: ${({ theme }) => theme.FONTS.TEXT};
   color: ${({ theme }) => theme.COLORS.TEXT_LIGHT};
-  font-size: 12px;
+  font-size: ${RFValue(12)}px;
   margin-right: 18px;
 `;

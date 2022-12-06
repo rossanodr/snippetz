@@ -1,4 +1,5 @@
 import { TextInput } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 import styled, { css } from "styled-components/native";
 
 export type TypeProps = "primary" | "secondary";
@@ -18,7 +19,7 @@ export const Container = styled(TextInput).attrs<Props>(({ theme, type }) => ({
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.COLORS.TEXT_LIGHT};
 
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
   padding: 7px 0;
 
   margin-bottom: 16px;

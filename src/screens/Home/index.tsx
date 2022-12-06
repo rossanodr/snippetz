@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from "react";
 import constants from "expo-constants";
-
 import firestore from "@react-native-firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { FlatList } from "react-native";
+
+import { CommentInput } from "../../components/CommentInput";
+import { Comments } from "../../components/Comments";
+import { Container, Feed, GoToPostButton, HeaderContainer } from "./styles";
 import { MainHeader } from "../../components/MainHeader";
+import { Post } from "../../components/Post";
 import { PostImageType } from "../../components/PostImageType";
 import { useTypeNavigation } from "../../hooks/useTypeNavigation";
-
-import { Container, Feed, GoToPostButton, HeaderContainer } from "./styles";
-import { FlatList } from "react-native";
-import { CommentInput } from "../../components/CommentsInput";
-import { Comments } from "../../components/Comments";
-import { Post } from "../../components/Post";
 
 type Posts = {
   id: string;
 };
 export function Home() {
-  const navigation = useTypeNavigation();
+ 
   const [postsId, setPostsId] = useState<Posts[]>([]);
   const [refreshing, setRefreshing] = useState(false);
 
-  function handleGoToPost(postId: string) {
-    navigation.navigate("PostScreen",  {screenType: "fullscreen", postId: postId, isRepost: false} );
-  }
+
+/**
+ * When the user refreshes the feed, the function will get the posts from the database and set the
+ * postsId state to the data returned from the database.
+ */
 
   async function buildTheFeed() {
     await firestore()
@@ -75,22 +76,7 @@ export function Home() {
         />
       </Feed>
 
-      {/* <Post>
-            <GoToPostButton>
-              <Repost postType="image" screenType="small" />
-            </GoToPostButton>
-            
-          </Post>
-          <Post>
-            <GoToPostButton>
-             
-              <Repost postType="text" screenType="small" />
-            </GoToPostButton>
-            
-          </Post>
-          <Post>
-            <PostImageType screenType="small" />
-          </Post> */}
+     
     </Container>
   );
 }

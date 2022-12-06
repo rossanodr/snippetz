@@ -9,17 +9,16 @@ interface Props extends ViewProps {
   size: number;
   radius: number;
   avatarUrl: string;
+  name: string
 }
 
-export function Avatar({ size, radius, avatarUrl, ...rest }: Props) {
+export function Avatar({ size, radius, avatarUrl, name, ...rest }: Props) {
   return (
     <Container size={size} radius={radius} {...rest}>
       <AvatarContainer size={size} radius={radius}>
-        {avatarUrl ? (
-          <AvatarImg source={{ uri: avatarUrl }} size={size} radius={radius} />
-        ) : (
-          <ActivityIndicator />
-        )}
+        
+          <AvatarImg source={{ uri: avatarUrl ? avatarUrl : `https://ui-avatars.com/api/?name=${name}}` }} size={size} radius={radius} />
+       
       </AvatarContainer>
     </Container>
   );

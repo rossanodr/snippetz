@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextInputProps } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Avatar } from "../Avatar";
-import { CommentInput } from "../CommentsInput";
+import { CommentInput } from "../CommentInput";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
 import { CommentContainer, CommentsCountText, Container } from "./styles";

@@ -51,7 +51,7 @@ export function MyProfileScreen() {
   //States
   const [postsId, setPostsId] = useState<Posts[]>([]);
   const [loading, setLoading] = useState(false);
-
+  const [numberOfColumns, setNumberOfColumns] = useState(1);
   const [showFeed, setShowFeed] = useState(true);
   const [showGallery, setShowGallery] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -106,8 +106,7 @@ export function MyProfileScreen() {
             .ref(`/images/${fileName}${MIME}`)
             .getDownloadURL();
           setNewAvatarImage(url);
-          console.log(newAvatarImage)
-
+          console.log(newAvatarImage);
         })
         .catch((error) => console.error(error));
     }
@@ -143,20 +142,20 @@ export function MyProfileScreen() {
     setLoading(true);
     try {
       if (name) {
-        console.log('change name')
+        console.log("change name");
         await firestore().collection("users").doc(user.id).update({
           name,
         });
       }
       if (bio) {
-        console.log('change bio')
+        console.log("change bio");
 
         await firestore().collection("users").doc(user.id).update({
           bio,
         });
 
         if (newCoverImage) {
-        console.log('change newCover')
+          console.log("change newCover");
 
           await firestore()
             .collection("users")
@@ -166,7 +165,7 @@ export function MyProfileScreen() {
         }
 
         if (newAvatarImage) {
-        console.log('change avatar')
+          console.log("change avatar");
 
           await firestore()
             .collection("users")
@@ -188,12 +187,14 @@ export function MyProfileScreen() {
       setShowGallery(false);
     }
     setShowFeed(true);
+    setNumberOfColumns(1);
   }
   function handleShowGallery() {
     if (showFeed) {
       setShowFeed(false);
     }
     setShowGallery(true);
+    setNumberOfColumns(2);
   }
 
   function handleGoToPicture(source: string) {
@@ -223,15 +224,18 @@ export function MyProfileScreen() {
     buildTheFeed();
   }, [refreshing]);
 
-  return (
+  return postsId ? (
     <Container>
       <FlatList
         data={postsId}
         onRefresh={() => setRefreshing(true)}
         refreshing={refreshing}
+        numColumns={numberOfColumns}
+     
+        key={numberOfColumns}
         contentContainerStyle={{
           width: "100%",
-          paddingBottom: 90
+          paddingBottom: 90,
         }}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.id}
@@ -252,7 +256,7 @@ export function MyProfileScreen() {
                 <Label style={{ alignSelf: "flex-end" }}>Following</Label>
               </FollowersButton>
               <AvatarContainer onPress={() => handleGoToPicture(avatarImage)}>
-                <Avatar avatarUrl={avatarImage} radius={25} size={100} />
+                <Avatar avatarUrl={avatarImage} radius={25} size={100} name={name} />
               </AvatarContainer>
               <FollowersButton>
                 <Title style={{ alignSelf: "flex-start" }}>364</Title>
@@ -279,24 +283,25 @@ export function MyProfileScreen() {
               <Ionicons
                 name="ios-albums-outline"
                 size={28}
-                color={theme.COLORS.BACKGROUND_SECONDARY}
+                color={showFeed ? theme.COLORS.SECONDARY_900 : theme.COLORS.TEXT_LIGHTER}
                 onPress={handleShowFeed}
               />
               <Ionicons
                 name="add-circle"
                 size={28}
-                color={theme.COLORS.BACKGROUND_SECONDARY}
+                color={showGallery ? theme.COLORS.SECONDARY_900 : theme.COLORS.TEXT_LIGHTER}
+
                 onPress={handleShowGallery}
               />
               <Ionicons
                 name="aperture-sharp"
                 size={28}
-                color={theme.COLORS.BACKGROUND_SECONDARY}
+                color={theme.COLORS.TEXT_LIGHTER}
               />
               <Ionicons
                 name="barcode-outline"
                 size={28}
-                color={theme.COLORS.BACKGROUND_SECONDARY}
+                color={theme.COLORS.TEXT_LIGHTER}
               />
             </IconsContainer>
           </Header>
@@ -304,24 +309,18 @@ export function MyProfileScreen() {
         ListHeaderComponentStyle={{
           height: 400,
           marginBottom: 10,
+          width: "100%",
         }}
         renderItem={({ item }) => (
-          <Feed>
+          <>
             {showFeed && (
               <PostContainer>
                 <Post screenType="small" postId={item.id} isRepost={false} />
               </PostContainer>
             )}
 
-            {showGallery && (
-              <GalleryFeed>
-                <ImageGalleryContainer>
-                  <ImagesGallery imgSource="https://picsum.photos/500/300?random=1" />
-                </ImageGalleryContainer>
-               
-              </GalleryFeed>
-            )}
-          </Feed>
+            {showGallery && <ImagesGallery postId={item.id} />}
+          </>
         )}
       />
 
@@ -346,7 +345,7 @@ export function MyProfileScreen() {
                 style={{ justifyContent: "center", alignItems: "center" }}
               >
                 <AvatarContainer>
-                  <Avatar avatarUrl={avatarImage} radius={20} size={70} />
+                  <Avatar avatarUrl={avatarImage} radius={20} size={70} name={name} />
                 </AvatarContainer>
                 <Title>Change Profile Picture</Title>
               </Pressable>
@@ -376,5 +375,7 @@ export function MyProfileScreen() {
         </Modal>
       </ModalCenteredView>
     </Container>
+  ) : (
+    <ActivityIndicator />
   );
 }

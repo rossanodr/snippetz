@@ -3,6 +3,7 @@ import { BorderlessButton, RectButton } from "react-native-gesture-handler";
 import styled, { css } from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { PostType } from "../../interfaces";
+import { RFValue } from "react-native-responsive-fontsize";
 
 interface Props extends BlurViewProps, PostType {
   active?: boolean;
@@ -78,10 +79,10 @@ export const Name = styled.Text<Props>`
   ${({ screenType }) =>
     screenType === "fullscreen"
       ? css`
-          font-size: 14px;
+          font-size: ${RFValue(14)}px;;
         `
       : css`
-          font-size: 12px;
+          font-size: ${RFValue(12)}px;
         `}
 
   ${({ postType }) =>
@@ -109,15 +110,15 @@ export const Name = styled.Text<Props>`
 export const Time = styled.Text<Props>`
   font-family: ${({ theme }) => theme.FONTS.TEXT};
 
-  font-size: 10px;
+  font-size: ${RFValue(10)}px
   ${({ screenType }) =>
     screenType === "fullscreen"
       ? css`
-          font-size: 12px;
+          font-size: ${RFValue(12)}px;
           text-shadow: 1px 1px 2px black;
         `
       : css`
-          font-size: 12px;
+          font-size: ${RFValue(12)}px;
           text-shadow: 1px 2px 1px black;
         `}
 

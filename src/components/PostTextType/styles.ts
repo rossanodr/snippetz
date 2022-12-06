@@ -3,6 +3,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import styled, { css } from "styled-components/native";
 import { PostType } from "../../interfaces";
 import constants from "expo-constants";
+import { RFValue } from 'react-native-responsive-fontsize';
 
 //TextType
 export const Container = styled.View<PostType>`
@@ -58,7 +59,7 @@ export const Title = styled.Text`
   color: ${({ theme }) => theme.COLORS.TEXT_PRIMARY};
   text-align: left;
 
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
   
 `;
 export const Text = styled.Text`
@@ -66,6 +67,6 @@ export const Text = styled.Text`
   color: ${({ theme }) => theme.COLORS.TEXT_PRIMARY};
   text-align: justify;
 
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
   
 `;

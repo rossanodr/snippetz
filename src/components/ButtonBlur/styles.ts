@@ -1,5 +1,6 @@
 import { BlurView } from "expo-blur";
 import { RectButton } from "react-native-gesture-handler";
+import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 import { PostType } from "../../interfaces";
 
@@ -28,6 +29,6 @@ export const Title = styled.Text<TitleProps>`
   font-family: ${({ theme }) => theme.FONTS.TITLE};
   color: ${({ theme, postType}) =>
     postType === "image" ? theme.COLORS.SHAPE : theme.COLORS.SUCCESS_900};
-  font-size: 12px;
+  font-size: ${RFValue(12)}px;
   margin-top: 4px;
 `;

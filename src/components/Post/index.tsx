@@ -8,10 +8,11 @@ import { useSavePost } from "../../hooks/useSavePost";
 import { PostType } from "../../interfaces";
 import { AddComment } from "../AddComment";
 import { Comments } from "../Comments";
-import { CommentInput } from "../CommentsInput";
+import { CommentInput } from "../CommentInput";
 import { PostImageType } from "../PostImageType";
 import { PostTextType } from "../PostTextType";
 import { Container, Content } from "./styles";
+import { SkeletonComponent } from "../SkeletonComponent";
 
 interface Props extends PostType {
   postId: string;
@@ -32,7 +33,10 @@ export function Post({ postId, screenType, isRepost }: Props) {
     fetchComments();
   }, []);
 
-  return post.postPhotoUrl ? (
+  return loading ? (
+    <SkeletonComponent />
+  ) : (
+  post.postPhotoUrl ? (
     <>
       <Container
         screenType={screenType}
@@ -72,12 +76,15 @@ export function Post({ postId, screenType, isRepost }: Props) {
           likeButtonActivity={likedPost}
         />
       </Container>
+
+        {/* Shows up the first comment, and a input to comment with a button that opens a modal that renders a FlatList with all comments and a input to comment the post */}
+      {screenType !== 'fullscreen' && (
       <Content>
-        {commentsArray[0] && (
+        {commentsArray[1] && (
           <Comments
-            comment={commentsArray[0].comment}
-            commentAuthorId={commentsArray[0].commentAuthor}
-            createdAt={commentsArray[0].createdAt}
+          comment={commentsArray[1].comment}
+          commentAuthorId={commentsArray[1].commentAuthor}
+          createdAt={commentsArray[1].createdAt}
           />
         )}
 
@@ -86,8 +93,9 @@ export function Post({ postId, screenType, isRepost }: Props) {
           loading={commentLoading}
           commentsArray={commentsArray}
           numberOfComments={commentsArray.length.toString()}
-        />
+          />
       </Content>
+          )}
     </>
   ) : (
     <>
@@ -128,12 +136,15 @@ export function Post({ postId, screenType, isRepost }: Props) {
           likeButtonActivity={likedPost}
         />
       </Container>
+      {/* Shows up the first comment, and a input to comment with a button that opens a modal that renders a FlatList with all comments and a input to comment the post */}
+      {screenType !== 'fullscreen' && (
+
       <Content>
-        {commentsArray[0] && (
+        {commentsArray[1] && (
           <Comments
-            comment={commentsArray[0].comment}
-            commentAuthorId={commentsArray[0].commentAuthor}
-            createdAt={commentsArray[0].createdAt}
+            comment={commentsArray[1].comment}
+            commentAuthorId={commentsArray[1].commentAuthor}
+            createdAt={commentsArray[1].createdAt}
           />
         )}
 
@@ -144,6 +155,7 @@ export function Post({ postId, screenType, isRepost }: Props) {
           numberOfComments={commentsArray.length.toString()}
         />
       </Content>
+          )}
     </>
-  );
+  ))
 }

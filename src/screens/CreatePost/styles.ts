@@ -3,6 +3,7 @@ import { Dimensions, TextInputProps } from "react-native";
 import { RectButton, TextInput } from "react-native-gesture-handler";
 import styled, { css } from "styled-components/native";
 import constants from "expo-constants";
+import { RFValue } from "react-native-responsive-fontsize";
 
 interface Props extends TextInputProps {
   active?: boolean;
@@ -49,7 +50,7 @@ export const PostItButton = styled(RectButton)`
 export const PostItText = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.TEXT_BOLD};
   color: ${({ theme }) => theme.COLORS.SHAPE};
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
   padding: 5px 10px;
 `;
 
@@ -88,7 +89,7 @@ export const TitleInput = styled(TextInput).attrs(
 
   font-family: ${({ theme }) => theme.FONTS.TEXT_BOLD};
   color: ${({ theme }) => theme.COLORS.TEXT_PRIMARY};
-  font-size: 16px;
+  font-size: ${RFValue(16)}px;
 `;
 
 export const BodyInput = styled(TextInput).attrs(({ ...rest }: Props) => ({
@@ -98,7 +99,7 @@ export const BodyInput = styled(TextInput).attrs(({ ...rest }: Props) => ({
 }))<TextInputProps>`
   font-family: ${({ theme }) => theme.FONTS.TEXT};
   color: ${({ theme }) => theme.COLORS.TEXT_PRIMARY};
-  font-size: 16px;
+  font-size: ${RFValue(16)}px;
 `;
 
 export const ImageWrapper = styled.View`

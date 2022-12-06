@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "styled-components/native";
+import { BlurViewProps } from "expo-blur";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Button, Container, Title } from "./styles";
-import { BlurViewProps } from "expo-blur";
 import { View } from "react-native";
+import { useTheme } from "styled-components/native";
+
+import { Button, Container, Title } from "./styles";
 import { PostType } from "../../interfaces";
 
 interface Props extends PostType, BlurViewProps {
@@ -22,6 +23,11 @@ interface Props extends PostType, BlurViewProps {
   buttonActivity?: boolean;
   handleButtonPress?: () => Promise<void>;
 }
+/**
+ * It's a button that changes color and icon when pressed.
+ * @param {Props}  - Props) {
+ * @returns A component that is a container with a button inside of it.
+ */
 
 export function ButtonBlur({
   iconName = "heart-outline",

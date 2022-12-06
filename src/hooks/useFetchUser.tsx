@@ -10,14 +10,24 @@ export function useFetchUser(userId: string) {
   const [postAuthorAvatar, setPostAuthorAvatar] = useState("");
 
   useEffect(() => {
-    setLoading(true);
     
     async function fetchPost() {
+      setLoading(true);
       const data = await firestore().collection("users").doc(userId).get();
       if (data.exists) {
         setAuthorName(data.get("name").toLocaleString());
-        setPostAuthorAvatar(data.get("avatarUrl").toLocaleString());
+        
+        if (data.get("avatarUrl")) {
+          setPostAuthorAvatar(data.get("avatarUrl").toLocaleString());
+        } else {
+          setPostAuthorAvatar(
+            `https://ui-avatars.com/api/?name=${data
+              .get("name")
+              .toLocaleString()}}`
+          );
+        }
       }
+      setLoading(false);
     }
 
     fetchPost();

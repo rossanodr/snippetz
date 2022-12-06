@@ -1,3 +1,4 @@
+import { RFValue } from "react-native-responsive-fontsize";
 import styled, { css } from "styled-components/native";
 
 interface Props {
@@ -31,5 +32,5 @@ export const CommentsCountText = styled.Text`
 
   padding: 0 25px;
   color: ${({ theme }) => theme.COLORS.TEXT_PRIMARY};
-  font-size: 14px;
+  font-size: ${RFValue(14)}px;;
 `;

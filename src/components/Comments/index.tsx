@@ -30,7 +30,7 @@ export function Comments({ commentAuthorId, comment, createdAt }: Props) {
   return (
     <Container>
       <AvatarContainer>
-        <Avatar size={45} radius={20} avatarUrl={postAuthorAvatar} />
+        <Avatar size={45} radius={20} avatarUrl={postAuthorAvatar} name={authorName}/>
       </AvatarContainer>
       <TextContainer>
         <NameAndCommentContainer>

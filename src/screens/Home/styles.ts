@@ -21,13 +21,10 @@ export const Feed = styled.View`
   width: 100%;
 `;
 
-
 export const GoToPostButton = styled(RectButton)`
   width: 97%;
-  
 
   align-self: center;
 
-margin-bottom: 16px;
   border-radius: 39px;
 `;
